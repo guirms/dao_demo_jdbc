@@ -3,6 +3,7 @@ package model.dao;
 import java.util.List;
 
 import model.entidades.Departamento;
+import model.entidades.Vendedor;
 
 public interface DepartamentoDao {
 	
@@ -11,5 +12,4 @@ public interface DepartamentoDao {
 	void deletarPorId(Integer id);
 	Departamento encontrarPorId(Integer id);
 	List<Departamento> encontrarTudo();
-	
 }
