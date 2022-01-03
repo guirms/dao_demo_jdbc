@@ -11,4 +11,5 @@ public interface DepartamentoDao {
 	void deletarPorId(Integer id);
 	Departamento encontrarPorId(Integer id);
 	List<Departamento> encontrarTudo();
+	
 }
