@@ -20,7 +20,10 @@ public class Programa {
 		Departamento dep = new Departamento(2, null);
 		List<Vendedor> lista = vdd.encontrarPorDepartamento(dep);
 		lista.forEach(System.out::println);
-
+		
+		System.out.println("\nTESTE 3: Encontrar tudo");
+		List<Vendedor> listaa = vdd.encontrarTudo();
+		listaa.forEach(System.out::println);
 	}
 
 }
