@@ -1,5 +1,6 @@
 package aplicacao;
 
+import java.util.Date;
 import java.util.List;
 
 import model.dao.DaoFabrica;
@@ -24,6 +25,17 @@ public class Programa {
 		System.out.println("\nTESTE 3: Encontrar tudo");
 		List<Vendedor> listaa = vdd.encontrarTudo();
 		listaa.forEach(System.out::println);
+		
+		System.out.println("\nTESTE 4: Inserir objeto");
+		Vendedor vendedor = new Vendedor(null, "Greg", "greg@gmail.com", new Date(), 4000.0, dep);
+		vdd.inserir(vendedor);
+		System.out.println("Sucesso; Novo id: " +vendedor.getId());
+		
+		System.out.println("\nTESTE 4: Atualizar");
+		vendedor = vdd.encontrarPorId(1);
+		vendedor.setNome("Bob");
+		vdd.atualizar(vendedor);
+		System.out.println("Sucesso, id " + vendedor.getId() + " alterado");
 	}
 
 }

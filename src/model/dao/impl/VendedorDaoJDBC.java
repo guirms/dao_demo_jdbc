@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -25,14 +26,65 @@ public class VendedorDaoJDBC implements VendedorDao {
 
 	@Override
 	public void inserir(Vendedor vendedor) {
-		// TODO Auto-generated method stub
+		PreparedStatement ps = null;
+		try {
+			ps = conn.prepareStatement("INSERT INTO seller\r\n"
+					+ "(Name, Email, BirthDate, BaseSalary, DepartmentId)\r\n"
+					+ "VALUES\r\n"
+					+ "(?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+			
+			ps.setString(1, vendedor.getNome());
+			ps.setString(2, vendedor.getEmail());
+			ps.setDate(3, new java.sql.Date(vendedor.getDataNascimento().getTime()));
+			ps.setDouble(4, vendedor.getSalarioBase());
+			ps.setInt(5, vendedor.getDepartamento().getId());
+			
+			int linhasAlteradas = ps.executeUpdate();
+			
+			if (linhasAlteradas > 0) {
+				ResultSet rs = ps.getGeneratedKeys();
+				if (rs.next()) {
+					int id = rs.getInt(1);
+					vendedor.setId(id);
+				}
+				DB.closeResultSet(rs);
+			}
+			else {
+				throw new DbException("Erro, nenhuma linha alterada");
+			}
+			
+		} catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		} finally {
+			DB.closeStatement(ps);
+		}
+			
 
 	}
 
 	@Override
 	public void atualizar(Vendedor vendedor) {
-		// TODO Auto-generated method stub
-
+		PreparedStatement ps = null;
+		try {
+			ps = conn.prepareStatement("UPDATE seller\r\n"
+					+ "SET Name = ?, Email = ?, BirthDate = ?, BaseSalary = ?, DepartmentId = ?\r\n"
+					+ "WHERE Id = ?");
+			
+			ps.setString(1, vendedor.getNome());
+			ps.setString(2, vendedor.getEmail());
+			ps.setDate(3, new java.sql.Date(vendedor.getDataNascimento().getTime()));
+			ps.setDouble(4, vendedor.getSalarioBase());
+			ps.setInt(5, vendedor.getDepartamento().getId());
+			ps.setInt(6, vendedor.getId());
+			
+			ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		} finally {
+			DB.closeStatement(ps);
+		}
+		
 	}
 
 	@Override
