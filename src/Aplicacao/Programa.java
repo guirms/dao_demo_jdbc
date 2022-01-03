@@ -36,6 +36,12 @@ public class Programa {
 		vendedor.setNome("Bob");
 		vdd.atualizar(vendedor);
 		System.out.println("Sucesso, id " + vendedor.getId() + " alterado");
+		
+		System.out.println("\nTESTE 4: Deletar");
+		int id = 18;
+		vdd.deletarPorId(id);
+		System.out.println("Sucesso, id " + id + " deletado");
+		
 	}
 
 }

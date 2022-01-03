@@ -59,7 +59,6 @@ public class VendedorDaoJDBC implements VendedorDao {
 			DB.closeStatement(ps);
 		}
 			
-
 	}
 
 	@Override
@@ -77,7 +76,10 @@ public class VendedorDaoJDBC implements VendedorDao {
 			ps.setInt(5, vendedor.getDepartamento().getId());
 			ps.setInt(6, vendedor.getId());
 			
-			ps.executeUpdate();
+			int linhasAlteradas = ps.executeUpdate();
+			if (linhasAlteradas == 0) {
+				throw new DbException("Nenhuma linha alterada");
+			}
 			
 		} catch (SQLException e) {
 			throw new DbException(e.getMessage());
@@ -89,7 +91,23 @@ public class VendedorDaoJDBC implements VendedorDao {
 
 	@Override
 	public void deletarPorId(Integer id) {
-		// TODO Auto-generated method stub
+		PreparedStatement ps = null;
+		try {
+			ps = conn.prepareStatement("DELETE FROM seller\r\n"
+					+ "WHERE Id = ?");
+			
+			ps.setInt(1, id);
+			
+			int linhasAlteradas = ps.executeUpdate();
+			if (linhasAlteradas == 0) {
+				throw new DbException("Nenhuma linha alterada");
+			}
+			
+		} catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		} finally {
+			DB.closeStatement(ps);
+		}
 
 	}
 
