@@ -15,7 +15,7 @@ public class Programa {
 		VendedorDao vdd = DaoFabrica.criarVendedorDao();
 		
 		System.out.println("TESTE 1: Encontrar por Id");
-		System.out.println(vdd.encontrarPorId(3));
+		System.out.println(vdd.encontrarPorId(2));
 		
 		System.out.println("\nTESTE 2: Encontrar por Departamento");
 		Departamento dep = new Departamento(2, null);
@@ -38,7 +38,7 @@ public class Programa {
 		System.out.println("Sucesso, id " + vendedor.getId() + " alterado");
 		
 		System.out.println("\nTESTE 4: Deletar");
-		int id = 18;
+		int id = 3;
 		vdd.deletarPorId(id);
 		System.out.println("Sucesso, id " + id + " deletado");
 		
