@@ -5,7 +5,6 @@
 #### O banco de dados utilizado nesse projeto foi o MySQL e suas dependências estão devidamente upadas aqui. Utilizei nesse projeto novos aprendizados adquiridos durante o curso Java orientado á objetos. 
 
 ## Recursos utilizados:
-- MySQL
 - JDBC
 - Padrão de projeto DAO
 - Boas práticas de instância. 
