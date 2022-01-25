@@ -10,6 +10,6 @@
 - Boas práticas de instância. 
 - Manipulação do banco de dados MySQL e testes individuais de cada instância.
 
-#### Se você tiver interesse em adquirir o curso, clique [aqui](https://www.udemy.com/course/java-curso-completo/)
+
 
 
